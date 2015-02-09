@@ -1,0 +1,19 @@
+body {
+    /*background:url('../images/4.jpg');*/
+    background-size:cover;
+}
+
+.quote_div {
+    /*border:1px solid white;*/
+    /*border-radius:5px;    */
+    color:white;
+    text-align:center;
+    text-shadow: 5px 5px 5px black;
+    /*font-family:'Tangerine', serif;*/
+    /*font-family:'Questrial', serif;*/
+    font-size:100px;
+    width:75%;
+    position: absolute;
+    top: 22%;
+    left: 15%;
+}

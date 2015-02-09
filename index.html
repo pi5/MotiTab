@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>MotiTab: Your daily dose of motivation</title>
+        <meta name="description" content="The HTML5 Herald">
+        <meta name="author" content="SitePoint">
+
+        <link rel="stylesheet" href="css/styles.css?v=1.0">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine|Inconsolata|Questrial|Josefin+Sans|Open+Sans|Roboto|Open+Sans+Condensed:300|Poiret+One|Anton|Pacifico|Dancing+Script">
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div id="quote" class="quote_div">
+             <p id='quote_text'></p>
+        </div>
+        <!--<script src="js/scripts.js"></script>-->
+        <script>
+            var xmlhttp = new XMLHttpRequest();
+            var url = "quotes/20fortunes2.json";
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var quotes = JSON.parse(xmlhttp.responseText);
+                    displayQuote(quotes);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+
+            function displayQuote(quotes) {
+                var fonts_arr = ["Tangerine", "Questrial","Josefin Sans", "Open Sans, sans-serif", "Roboto, sans-serif", "Poiret One, cursive", "Anton, sans-serif", "Pacifico, cursive", "Dancing Script, cursive" ];
+                var font_id = Math.floor(Math.random()*100) % fonts_arr.length;
+                document.getElementById("quote").style.fontFamily=fonts_arr[font_id];
+                console.log(fonts_arr[font_id]);
+                // Select a random background
+                var num_images = 15;
+                var image_id = Math.floor(Math.random()*100) % num_images;
+                document.body.style.backgroundImage="url('images/" + image_id + ".jpg')";
+
+                var len = quotes && quotes.quotes && quotes.quotes.length;
+                if (len) {
+                    var quote_id = Math.floor(Math.random()*100)%len;
+                    var rand_quote = quotes.quotes[quote_id];
+                    var quote_tag = document.getElementById('quote_text');
+                    quote_tag.textContent = rand_quote;
+                    console.log(quotes);    
+                }
+                else{
+                    console.log("Err. Check your quotes/request.");   
+                }
+            }
+        </script>
+    </body>
+</html>
